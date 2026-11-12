@@ -1,14 +1,14 @@
 # sql-transactional-reconciliation
 SQL scripts for transactional batch reconciliation, duplicate detection, and SLA audit reporting (PostgreSQL / Oracle).
-# 🗄️ Transactional Batch Reconciliation & Audit Queries (SQL)
+# 🗄️ Transactional Batch Reconciliation & DML Operations (SQL)
 
-Production-oriented SQL scripts designed for post-batch reconciliation, financial integrity verification, and operational SLA reporting across relational databases (**PostgreSQL / Oracle DB**).
+Production-oriented SQL scripts demonstrating full data lifecycle management (**DDL, DML, Transactional Control, Reconciliation & Audit Logging**) across relational databases (**PostgreSQL / Oracle DB**).
 
-## 🚀 Covered Scenarios
-- **Schema Design & Constraints:** Transactional ledger table with primary keys, currency checks, and audit timestamps.
-- **Duplicate & Anomaly Detection:** Window functions (`ROW_NUMBER`) and grouping queries to flag duplicate batch entries or out-of-range amounts.
-- **Daily Settlement Summary:** Aggregated reconciliation reports grouped by currency (`PYG`, `USD`) and processing status (`APPROVED`, `REJECTED`, `PENDING`).
-- **SLA & Latency Monitoring:** Queries to identify delayed batch jobs exceeding processing thresholds.
+## 🚀 Covered SQL Operations
+- **DDL & Constraints (`CREATE TABLE`, `INDEX`):** Transactional ledger and audit log tables with primary keys, `CHECK` constraints, and composite indexes.
+- **DML & Safe Execution (`INSERT`, `UPDATE`, `DELETE`):** Controlled batch approvals, reprocessing of rejected records, and safe test-data cleanup wrapped in `BEGIN / COMMIT / ROLLBACK` transaction blocks.
+- **Duplicate Prevention (`CTE` & `ROW_NUMBER`):** Window functions used inside `UPDATE` subqueries to prevent approving duplicate entries.
+- **Reconciliation & Audit Reporting (`LEFT JOIN`, `GROUP BY`):** Aggregated daily settlement summaries linked to audit execution logs.
 
 ## 🛠️ Compatibility
 - PostgreSQL 14+ / Oracle Database 19c+
